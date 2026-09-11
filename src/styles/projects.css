@@ -1,0 +1,296 @@
+/* ===================================================
+   PROJECTS / SELECTED WORK STYLES
+   Editorial Vertical Layout with Restrained Motion
+   =================================================== */
+
+.projects-section {
+  padding: 64px 0;
+}
+
+.projects-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.project-item {
+  padding: 48px 0;
+  border-top: 1px solid var(--border);
+  position: relative;
+  transition: border-color 0.3s ease;
+}
+
+.project-item:first-child {
+  border-top: 1px solid var(--border);
+}
+
+.project-item:last-child {
+  border-bottom: 1px solid var(--border);
+}
+
+.project-item:hover {
+  border-color: var(--accent);
+}
+
+.project-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+/* Reverse layout for even items for editorial balance */
+.project-item:nth-child(even) .project-layout {
+  grid-template-columns: 1fr 1.2fr;
+}
+
+.project-item:nth-child(even) .project-info {
+  order: 2;
+}
+
+.project-item:nth-child(even) .project-visual {
+  order: 1;
+}
+
+.project-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.project-meta-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.project-number {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+}
+
+.project-category {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--faint);
+}
+
+.project-title {
+  font-size: clamp(24px, 3.2vw, 32px);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--fg);
+  line-height: 1.2;
+  margin-bottom: 6px;
+  transition: transform 0.3s ease, color 0.3s ease;
+  display: inline-block;
+}
+
+.project-item:hover .project-title {
+  transform: translateX(4px);
+  color: var(--accent);
+}
+
+.project-subtitle {
+  font-size: 15px;
+  color: var(--muted);
+  font-weight: 500;
+  margin-bottom: 14px;
+}
+
+.project-description {
+  font-size: 14.5px;
+  color: var(--muted);
+  line-height: 1.65;
+  margin-bottom: 20px;
+}
+
+/* Feature bullets */
+.project-features {
+  list-style: none;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.project-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.project-feature-bullet {
+  color: var(--accent);
+  font-size: 11px;
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+
+/* Technology Pills */
+.project-tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 26px;
+}
+
+.project-tech-tag {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--muted);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.project-item:hover .project-tech-tag {
+  border-color: var(--border-light);
+}
+
+/* Links (Live Demo & GitHub) */
+.project-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.project-link {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--fg);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.project-link:hover {
+  color: var(--accent);
+}
+
+.project-link-arrow {
+  font-size: 14px;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: inline-block;
+}
+
+.project-link:hover .project-link-arrow {
+  transform: translate(3px, -3px);
+}
+
+/* Project Visual Preview */
+.project-visual {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  aspect-ratio: 16 / 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-item:hover .project-visual {
+  border-color: var(--accent);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+}
+
+.project-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.project-item:hover .project-img {
+  transform: scale(1.02);
+}
+
+/* Editorial Fallback Visual Mockup when image file is missing */
+.project-visual-fallback {
+  width: 100%;
+  height: 100%;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: linear-gradient(135deg, var(--surface) 0%, var(--bg) 100%);
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+  transition: transform 0.35s ease;
+}
+
+.project-item:hover .project-visual-fallback {
+  transform: scale(1.02);
+}
+
+.visual-fallback-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 12px;
+}
+
+.visual-mock-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.visual-mock-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border);
+}
+
+.visual-mock-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--faint);
+}
+
+.visual-fallback-body {
+  margin: auto 0;
+  text-align: center;
+}
+
+.visual-mock-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--fg);
+  margin-bottom: 4px;
+}
+
+.visual-mock-subtitle {
+  font-size: 12.5px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+}
+
+.visual-fallback-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent);
+}

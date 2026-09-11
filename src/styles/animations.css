@@ -1,0 +1,53 @@
+/* ===================================================
+   ANIMATION STYLES & REUSABLE KEYFRAMES
+   =================================================== */
+
+/* Rise-in staggered entrance */
+.rise-in {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: riseIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes riseIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scroll reveal classes for IntersectionObserver fallback */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-stagger > .reveal {
+  transition-delay: calc(var(--i, 0) * 0.08s);
+}
+
+/* Float animation for decorative symbols (✦, *) */
+@keyframes floatDeco {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(5deg);
+  }
+}
+
+.float-symbol {
+  display: inline-block;
+  animation: floatDeco 8s ease-in-out infinite;
+}
+
+/* Magnetic wrap */
+.btn-magnetic {
+  display: inline-block;
+}

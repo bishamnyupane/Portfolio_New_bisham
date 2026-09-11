@@ -1,0 +1,239 @@
+/* ===================================================
+   DESIGN SYSTEM — Editorial, Typography-Driven, Matte
+   Reference: https://www.acharyashailesh.com.np/
+   =================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-hand: 'Caveat', cursive, sans-serif;
+
+  /* Warm paper light palette */
+  --bg: #fafaf8;
+  --fg: #171717;
+  --muted: #6b7280;
+  --faint: #9ca3af;
+  --accent: #c26e38; /* Warm terracotta brown */
+  --accent-soft: rgba(194, 110, 56, 0.06);
+  --accent-hover: #a85826;
+  --surface: #f4f4ef;
+  --surface-hover: #ebebe5;
+  --border: #dcd7ce;
+  --border-light: rgba(220, 215, 206, 0.5);
+  --card-bg: transparent;
+
+  --orb-1: rgba(194, 110, 56, 0.06);
+  --orb-2: rgba(99, 102, 241, 0.05);
+  --orb-3: rgba(234, 179, 8, 0.04);
+
+  --radius: 16px;
+  --radius-sm: 10px;
+  --radius-full: 9999px;
+
+  color-scheme: light;
+}
+
+.dark {
+  /* Deep matte dark palette */
+  --bg: #0a0a0a;
+  --fg: #fafaf8;
+  --muted: #9ca3af;
+  --faint: #525252;
+  --accent: #f59e0b; /* Golden amber */
+  --accent-soft: rgba(245, 158, 11, 0.08);
+  --accent-hover: #d97706;
+  --surface: #141414;
+  --surface-hover: #1c1c1c;
+  --border: #282825;
+  --border-light: rgba(40, 40, 37, 0.5);
+  --card-bg: transparent;
+
+  --orb-1: rgba(245, 158, 11, 0.05);
+  --orb-2: rgba(129, 140, 248, 0.04);
+  --orb-3: rgba(16, 185, 129, 0.03);
+
+  color-scheme: dark;
+}
+
+/* Base Body Styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+/* Subtle Film Grain Noise Texture */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px;
+}
+
+.dark body::before {
+  opacity: 0.045;
+}
+
+/* Scroll progress bar */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), #818cf8, var(--accent));
+  background-size: 200% 100%;
+  animation: shimmerBar 3s ease infinite;
+  z-index: 1000;
+  width: 0%;
+  transition: width 0.05s linear;
+}
+
+@keyframes shimmerBar {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Global Typography & Links */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* App container */
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+  padding-top: 56px;
+}
+
+.container {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Section Connectors (dashed subtle lines) */
+.section-connector {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  overflow: visible;
+  color: var(--border);
+}
+
+.section-connector svg {
+  height: 48px;
+  width: 24px;
+}
+
+/* Draw-on-scroll SVG arrows */
+.draw-arrow {
+  color: var(--accent);
+}
+
+.draw-arrow path {
+  stroke: currentColor;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.draw-arrow.drawn path {
+  stroke-dashoffset: 0;
+}
+
+/* Universal section labels and headers */
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-bottom: 8px;
+}
+
+.section-title {
+  font-size: clamp(24px, 3.8vw, 32px);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--fg);
+  margin-bottom: 32px;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title-annotation {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 4px;
+  color: var(--accent);
+  margin-left: 12px;
+  vertical-align: top;
+  position: relative;
+  top: -6px;
+}
+
+.section-title-annotation span {
+  font-family: var(--font-hand);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.section-title-annotation svg {
+  width: 28px;
+  height: 24px;
+  flex-shrink: 0;
+  color: var(--accent);
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
